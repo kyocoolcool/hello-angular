@@ -17,7 +17,9 @@ import {Component, Inject, OnInit} from '@angular/core';
           <div *ngIf="userPasswordRef.errors?.minlength">should be at least 3 characters</div>
           <br>
           <br>
-          <button (click)="onClick()">login</button>
+<!--          <button (click)="onClick()">login</button>-->
+<!--          <button type="submit" (click)="onSubmit(formRef)">submit</button>-->
+          <button type="submit">submit</button>
         </fieldset>
       </form>
     </div>
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(value: any): void {
     // tslint:disable-next-line:no-console
-    console.info(value);
+    console.info(value.login.userName);
+    console.info(value.login.userPassword);
   }
 }
