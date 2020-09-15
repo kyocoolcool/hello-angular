@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './core/auth.service';
 import {FormsModule} from '@angular/forms';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([{path: 'login', component: LoginComponent}])
   ],
   providers: [
     {provide: 'auth', useClass: AuthService}
