@@ -26,7 +26,7 @@ import {Component, Inject, OnInit} from '@angular/core';
   `,
   styles: ['input.ng-invalid { border: 3px solid red; }',
     'input.ng-valid { border: 3px solid green; }',
-    '.a {color: red}'
+    '.a {color: grey}'
   ],
 })
 export class LoginComponent implements OnInit {

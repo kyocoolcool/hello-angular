@@ -5,17 +5,19 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './core/auth.service';
 import {FormsModule} from '@angular/forms';
-import {RouterModule} from "@angular/router";
+import {routing} from "./app.routes";
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([{path: 'login', component: LoginComponent}])
+    routing
   ],
   providers: [
     {provide: 'auth', useClass: AuthService}
