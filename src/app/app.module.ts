@@ -9,7 +9,7 @@ import {routing} from "./app.routes";
 import {TodoComponent} from './todo/todo.component';
 import {InMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryTodoDbService} from "./todo/todo.data";
-import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import {HttpModule} from "@angular/http";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     InMemoryWebApiModule.forRoot(InMemoryTodoDbService),
     routing
   ],

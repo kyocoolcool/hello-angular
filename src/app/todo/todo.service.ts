@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Todo} from "./todo.model";
 import {UUID} from "angular2-uuid";
-import {Http, Headers} from "@angular/http";
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise'
 
 
@@ -10,10 +10,10 @@ import 'rxjs/add/operator/toPromise'
 })
 export class TodoService {
   private api_url = "api/todos";
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
 
@@ -23,10 +23,11 @@ export class TodoService {
       desc: desc,
       completed: false
     };
+    let a = JSON.stringify(todo);
     return this.http
-      .post(this.api_url, JSON.stringify(todo), {headers: this.headers})
+      .post(this.api_url, todo, {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Todo)
+      .then(res => res)
       .catch(this.handleError);
   }
 
@@ -55,12 +56,13 @@ export class TodoService {
     return this.http
       .get(this.api_url)
       .toPromise()
-      .then(res => res.json().data as Todo[])
+      .then(res =>{
+       return res as Todo[]})
       .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error)
+    console.error('An error occurred')
     return Promise.reject(error.meaning || error)
   }
 }
