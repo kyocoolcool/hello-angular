@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise'
   providedIn: 'root'
 })
 export class TodoService {
-  private api_url = "api/todos";
+  private apiUrl = 'api/todos';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 
@@ -18,14 +18,13 @@ export class TodoService {
 
 
   addTodo(desc: string): Promise<Todo> {
-    let todo: Todo = {
+    const todo: Todo = {
       id: UUID.UUID(),
       desc: desc,
       completed: false
     };
-    let a = JSON.stringify(todo);
     return this.http
-      .post(this.api_url, todo, {headers: this.headers})
+      .post(this.apiUrl, todo, {headers: this.headers})
       .toPromise()
       .then(res => res)
       .catch(this.handleError);
@@ -33,13 +32,12 @@ export class TodoService {
 
   togguleTodo(todo: Todo): Promise<Todo> {
     const url = '${this.api_url}/${todo.id}';
-    console.info(url);
-    let updatedTodo = Object.assign({}, todo, {completed: !todo.completed})
+    const updatedTodo = Object.assign({}, todo, {completed: !todo.completed})
     return this.http
       .put(url, JSON.stringify(updatedTodo), {headers: this.headers})
       .toPromise()
       .then(() => updatedTodo)
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   deleteTodoById(id: string): Promise<Todo> {
@@ -54,15 +52,14 @@ export class TodoService {
 
   getTodos(): Promise<Todo[]> {
     return this.http
-      .get(this.api_url)
+      .get(this.apiUrl)
       .toPromise()
-      .then(res =>{
-       return res as Todo[]})
+      .then(res => {
+       return res as Todo[]; })
       .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred')
-    return Promise.reject(error.meaning || error)
+    return Promise.reject(error.meaning || error);
   }
 }

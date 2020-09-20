@@ -12,7 +12,7 @@ import 'rxjs-compat/add/observable/fromEvent';
   styleUrls: ['./todo-header.component.css']
 })
 export class TodoHeaderComponent implements OnInit {
-  inputValue:string = '';
+  inputValue: string = '';
   @Input()
   placeholder = 'What needs to be done';
   @Input()
