@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Todo} from "./todo.model";
-import {TodoService} from "./todo.service";
+import {Todo} from './todo.model';
+import {TodoService} from './todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -20,36 +20,40 @@ export class TodoComponent implements OnInit {
     this.getTodos();
   }
 
-  addTodo() {
-  this.service
-    .addTodo(this.desc)
-    .then(todo=>{
-      this.todos=[...this.todos,todo]
-      this.desc = '';
-    });
+  addTodo(): void {
+    this.service
+      .addTodo(this.desc)
+      .then(todo => {
+        this.todos = [...this.todos, todo];
+        this.desc = '';
+      });
   }
 
-  toggleTodo(todo:Todo) {
+  toggleTodo(todo: Todo): void {
     const i = this.todos.indexOf(todo);
     this.service
       .togguleTodo(todo)
-      .then(t=>{
-        this.todos=[...this.todos.slice(0,i),t,...this.todos.slice(i+1)]
-      })
+      .then(t => {
+        this.todos = [...this.todos.slice(0, i), t, ...this.todos.slice(i + 1)];
+      });
   }
 
-  removeTodo(todo:Todo) {
+  removeTodo(todo: Todo): void{
     const i = this.todos.indexOf(todo);
     this.service
       .deleteTodoById(todo.id)
-      .then(()=>{
+      .then(() => {
         this.todos = [...this.todos.slice(0, i), ...this.todos.slice(i + 1)];
-      })
+      });
   }
 
-  getTodos() :void{
+  getTodos(): void {
     this.service
       .getTodos()
-      .then(todos=>this.todos=[...todos])
+      .then(todos => this.todos = [...todos]);
+  }
+
+  onTextChange(value): void {
+    this.desc = value;
   }
 }
