@@ -6,16 +6,16 @@ import {TodoComponent} from "./todo/todo.component";
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'todo',
+    redirectTo: 'login',
     pathMatch: 'full'
-  },
-  {
-    path: 'todo',
-    component: TodoComponent
   },
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  {
+    path: 'todo',
+    redirectTo: 'todo'
+  },
 ];
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);

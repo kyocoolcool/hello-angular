@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Todo} from "./todo.model";
-import {UUID} from "angular2-uuid";
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import 'rxjs/add/operator/toPromise'
+import {Todo} from './todo.model';
+import {UUID} from 'angular2-uuid';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodoService {
   private apiUrl = 'api/todos';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -55,7 +53,8 @@ export class TodoService {
       .get(this.apiUrl)
       .toPromise()
       .then(res => {
-       return res as Todo[]; })
+        return res as Todo[];
+      })
       .catch(this.handleError);
   }
 
