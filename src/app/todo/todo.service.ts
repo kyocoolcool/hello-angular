@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TodoService {
-  private apiUrl = 'api/todos';
+  private apiUrl: string = 'http://localhost:3000/todos';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 
@@ -29,8 +29,8 @@ export class TodoService {
   }
 
   togguleTodo(todo: Todo): Promise<Todo> {
-    const url = '${this.api_url}/${todo.id}';
-    const updatedTodo = Object.assign({}, todo, {completed: !todo.completed})
+    const url = `${this.apiUrl}/${todo.id}`;
+    const updatedTodo = Object.assign({}, todo, {completed: !todo.completed});
     return this.http
       .put(url, JSON.stringify(updatedTodo), {headers: this.headers})
       .toPromise()
@@ -39,7 +39,7 @@ export class TodoService {
   }
 
   deleteTodoById(id: string): Promise<Todo> {
-    const url = '${this.api_url}/${id}';
+    const url = `${this.apiUrl}/${id}`;
     return this.http
       .delete(url, {headers: this.headers})
       .toPromise()
@@ -53,7 +53,7 @@ export class TodoService {
       .get(this.apiUrl)
       .toPromise()
       .then(res => {
-        return res as Todo[];
+        return res;
       })
       .catch(this.handleError);
   }

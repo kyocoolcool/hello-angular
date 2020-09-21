@@ -9,19 +9,22 @@ import {TodoHeaderComponent} from './todo-header/todo-header.component';
 import {TodoService} from './todo.service';
 import {InMemoryTodoDbService} from './todo.data';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(InMemoryTodoDbService),
     routing
   ],
   declarations: [
     TodoComponent,
     TodoFooterComponent,
-    TodoHeaderComponent
+    TodoHeaderComponent,
+    TodoItemComponent,
+    TodoListComponent
   ],
   providers: [
     {provide: 'todoService', useClass: TodoService}
