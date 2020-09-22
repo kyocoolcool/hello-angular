@@ -3,8 +3,12 @@ import {TodoComponent} from './todo.component';
 
 export const routes: Routes = [
   {
-    path: 'todo',
+    path: 'todo/:filter',
     component: TodoComponent
+  },
+  {
+    path: 'todo',
+    redirectTo: 'todo/All'
   }
 ];
 

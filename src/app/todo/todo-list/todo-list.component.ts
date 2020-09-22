@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Todo} from "../todo.model";
+
 
 @Component({
   selector: 'app-todo-list',
@@ -6,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+  // tslint:disable-next-line:variable-name
+  _todos: Todo[] = [];
 
-  constructor() { }
+  @Input()
+  set todos(todos: Todo[]) {
+    this._todos = [...todos];
+  }
+
+  get todos(): Todo[] {
+    return this._todos;
+  }
+
+  @Output() removeTodo = new EventEmitter<Todo>();
+  @Output() toggleTodo = new EventEmitter<Todo>();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  removeTriggered(todo: Todo): void {
+    this.removeTodo.emit(todo);
+  }
+
+  toggleTriggered(todo: Todo): void {
+    this.toggleTodo.emit(todo);
   }
 
 }

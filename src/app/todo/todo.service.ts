@@ -61,4 +61,22 @@ export class TodoService {
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.meaning || error);
   }
+
+  filterTodos(filter: string): Promise<Todo[]> {
+    switch (filter) {
+      case 'Active':
+        return this.http
+          .get(`${this.apiUrl}?completed=false`).toPromise()
+          .then(res => res as Todo[])
+          .catch(this.handleError);
+      case 'Completed':
+        return this.http
+          .get(`${this.apiUrl}?completed=true`)
+          .toPromise()
+          .then(res => res as Todo[])
+          .catch(this.handleError);
+      default :
+        return this.getTodos();
+    }
+  }
 }
