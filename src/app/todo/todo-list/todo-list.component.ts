@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Todo} from "../todo.model";
+import {Todo} from '../todo.model';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class TodoListComponent implements OnInit {
 
   @Output() removeTodo = new EventEmitter<Todo>();
   @Output() toggleTodo = new EventEmitter<Todo>();
+  @Output() toggleAll = new EventEmitter<boolean>();
 
   constructor() {
   }
@@ -37,4 +38,7 @@ export class TodoListComponent implements OnInit {
     this.toggleTodo.emit(todo);
   }
 
+  toggleAllTriggered(): void {
+    this.toggleAll.emit(true);
+  }
 }

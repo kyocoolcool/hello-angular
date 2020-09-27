@@ -22,7 +22,11 @@
     [todos]="todos"
     (removeTodo)="removeTodo($event)"
     (toggleTodo)="toggleTodo($event)"
+    (toggleAll)="toggleAll()"
   >
   </app-todo-list>
-  <app-todo-footer [itemCount]="todos?.length"></app-todo-footer>
+  <app-todo-footer
+    [itemCount]="todos?.length"
+    (clear)="clearCompleted()"
+  ></app-todo-footer>
 </section>

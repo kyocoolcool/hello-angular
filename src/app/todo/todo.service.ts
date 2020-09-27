@@ -32,7 +32,7 @@ export class TodoService {
     const url = `${this.apiUrl}/${todo.id}`;
     const updatedTodo = Object.assign({}, todo, {completed: !todo.completed});
     return this.http
-      .put(url, JSON.stringify(updatedTodo), {headers: this.headers})
+      .patch(url, JSON.stringify(updatedTodo), {headers: this.headers})
       .toPromise()
       .then(() => updatedTodo)
       .catch(this.handleError);
