@@ -10,16 +10,17 @@ export class TodoService {
   private apiUrl: string = 'http://localhost:3000/todos';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-
   constructor(private http: HttpClient) {
   }
 
 
   addTodo(desc: string): Promise<Todo> {
+    const userId: number = +localStorage.getItem('userId');
     const todo: Todo = {
       id: UUID.UUID(),
       desc: desc,
-      completed: false
+      completed: false,
+      userId
     };
     return this.http
       .post(this.apiUrl, todo, {headers: this.headers})
@@ -49,8 +50,9 @@ export class TodoService {
   }
 
   getTodos(): Promise<Todo[]> {
+    const userId: number = +localStorage.getItem('userId');
     return this.http
-      .get(this.apiUrl)
+      .get(`${this.apiUrl}?userId=${userId}`)
       .toPromise()
       .then(res => {
         return res;
@@ -63,10 +65,11 @@ export class TodoService {
   }
 
   filterTodos(filter: string): Promise<Todo[]> {
+    const userId: number = +localStorage.getItem('userId');
     switch (filter) {
       case 'Active':
         return this.http
-          .get(`${this.apiUrl}?completed=false`).toPromise()
+          .get(`${this.apiUrl}?completed=false&userId=${userId}`).toPromise()
           .then(res => res as Todo[])
           .catch(this.handleError);
       case 'Completed':

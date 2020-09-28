@@ -6,12 +6,14 @@ export class InMemoryTodoDbService implements InMemoryDbService {
     let todos: Todo[] = [{
       id: "f823b191-7799-438d-8d78-fcb1e468fc78",
       desc: "Getting up",
-      completed: true
+      completed: true,
+      userId: 1
     },
       {
         id: "c1234567-8866-522c-9f78-hfea14f8hc12",
         desc: "Go to school",
-        completed: false
+        completed: false,
+        userId: 2
       }
     ];
     return {todos};

@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {routing} from './app.routes';
 import {HttpClientModule} from '@angular/common/http';
 import {TodoModule} from './todo/todo.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {TodoModule} from './todo/todo.module';
     FormsModule,
     HttpClientModule,
     routing,
-    TodoModule
+    TodoModule,
+    CoreModule
   ],
   providers: [
     {provide: 'auth', useClass: AuthService}
