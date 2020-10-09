@@ -1,7 +1,6 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, NgModel} from '@angular/forms';
+import { NgModule } from '@angular/core';
 import {routing} from './todo.routes';
 import {TodoComponent} from './todo.component';
 import {TodoFooterComponent} from './todo-footer/todo-footer.component';
@@ -11,15 +10,13 @@ import {InMemoryTodoDbService} from './todo.data';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
-import {MdlModule} from '@angular-mdl/core';
+import {SharedModule} from '../share/share.module';
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
         HttpClientModule,
         routing,
-        MdlModule
+        SharedModule
     ],
   declarations: [
     TodoComponent,
