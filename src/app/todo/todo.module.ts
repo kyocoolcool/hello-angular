@@ -11,14 +11,16 @@ import {InMemoryTodoDbService} from './todo.data';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import {MdlModule} from '@angular-mdl/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    routing
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        routing,
+        MdlModule
+    ],
   declarations: [
     TodoComponent,
     TodoFooterComponent,

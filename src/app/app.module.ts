@@ -8,6 +8,8 @@ import {routing} from './app.routes';
 import {HttpClientModule} from '@angular/common/http';
 import {TodoModule} from './todo/todo.module';
 import {CoreModule} from './core/core.module';
+import {MdlModule} from '@angular-mdl/core';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {CoreModule} from './core/core.module';
     HttpClientModule,
     routing,
     TodoModule,
-    CoreModule
+    CoreModule,
+    MdlModule
   ],
   providers: [
     {provide: 'auth', useClass: AuthService}
