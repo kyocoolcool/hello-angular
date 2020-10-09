@@ -17,5 +17,9 @@ export const routes: Routes = [
     path: 'todo',
     redirectTo: 'todo'
   },
+  {
+    path: 'playground',
+    loadChildren: () => import('./playground/playground.module').then(m => m.PlaygroundModule)
+  }
 ];
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);
